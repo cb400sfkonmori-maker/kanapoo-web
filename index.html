@@ -22,9 +22,9 @@
             padding: 0;
         }
 
-        /* Hero Section */
+        /* Hero Section - 高さを調整 */
         .hero {
-            height: 100vh;
+            height: 600px; /* 画面いっぱいではなく、固定の高さに変更 */
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('image1.jpg') no-repeat center center/cover;
             display: flex;
             align-items: center;
@@ -70,28 +70,10 @@
             margin: 20px auto 0;
         }
 
-        /* Profile Section */
-        .profile-flex {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .profile-image {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .profile-image img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .profile-text {
-            flex: 1.5;
-            min-width: 300px;
+        /* Profile Section - 写真削除に伴うレイアウト変更 */
+        .profile-body {
+            max-width: 700px; /* テキストが広がりすぎないように幅を制限 */
+            margin: 0 auto;   /* 中央揃え */
         }
 
         /* Hobbies Section */
@@ -151,6 +133,7 @@
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2rem; }
             .hero-content p { font-size: 1.1rem; }
+            .hero { height: 400px; } /* スマホでは少し高さを抑える */
         }
     </style>
 </head>
@@ -166,21 +149,16 @@
     <div class="container">
         <section id="about">
             <h2>About "Kanapoo"</h2>
-            <div class="profile-flex">
-                <div class="profile-image">
-                    <img src="image1.jpg" alt="ライフデザイナー かなプー">
-                </div>
-                <div class="profile-text">
-                    <h3>ライフデザイナー 2年目の情熱</h3>
-                    <p>
-                        西毛エリアを中心に活動する、住友生命2年目のライフデザイナー「かなプー」です。<br>
-                        私自身、高校生の息子を育てる一人の母として、日々奮闘しています。子どもたちが自分の夢に向かって真っ直ぐに進める未来。それを「お金と安心」の面からサポートするのが私の使命です。
-                    </p>
-                    <p>
-                        写真（上）では知的なプロフェッショナルとして、そしてこちらでは等身大の母として。
-                        二つの顔があるからこそ、あなたの家庭のリアルな悩みに寄り添えると信じています。
-                    </p>
-                </div>
+            <div class="profile-body">
+                <h3>ライフデザイナー 2年目の情熱</h3>
+                <p>
+                    西毛エリアを中心に活動する、住友生命2年目のライフデザイナー「かなプー」です。<br>
+                    私自身、高校生の息子を育てる一人の母として、日々奮闘しています。子どもたちが自分の夢に向かって真っ直ぐに進める未来。それを「お金と安心」の面からサポートするのが私の使命です。
+                </p>
+                <p>
+                    知的なプロフェッショナルとしての顔と、等身大の母としての顔。
+                    この二つがあるからこそ、あなたの家庭のリアルな悩みに寄り添えると信じています。
+                </p>
             </div>
         </section>
 
@@ -211,7 +189,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Kanapoo Life Design. Produced by J.K.</p>
+        <p>&copy; 2026 Kanapoo Life Design. Produced by Logic Base.</p>
     </footer>
 
 </body>
