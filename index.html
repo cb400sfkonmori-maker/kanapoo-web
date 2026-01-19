@@ -22,10 +22,11 @@
             padding: 0;
         }
 
-        /* Hero Section - 高さを調整 */
+        /* Hero Section - 高さを程よく調整 */
         .hero {
-            height: 600px; /* 画面いっぱいではなく、固定の高さに変更 */
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('image1.jpg') no-repeat center center/cover;
+            height: 50vh; /* 画面の高さの半分にする */
+            min-height: 400px; /* ただし最低400pxは確保 */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image1.jpg') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -35,20 +36,20 @@
         }
 
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: 2.5rem; /* 少しサイズを調整 */
             margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
         }
 
         .hero-content p {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
         }
 
         /* Container */
         .container {
-            max-width: 900px;
+            max-width: 800px; /* 全体の幅を少しすっきりと */
             margin: 0 auto;
             padding: 80px 20px;
         }
@@ -70,10 +71,11 @@
             margin: 20px auto 0;
         }
 
-        /* Profile Section - 写真削除に伴うレイアウト変更 */
-        .profile-body {
-            max-width: 700px; /* テキストが広がりすぎないように幅を制限 */
-            margin: 0 auto;   /* 中央揃え */
+        /* Profile Section - シンプルな中央揃えテキストに変更 */
+        .profile-simple-text {
+            text-align: left;
+            max-width: 680px;
+            margin: 0 auto; /* 中央寄せ */
         }
 
         /* Hobbies Section */
@@ -86,14 +88,19 @@
 
         .hobby-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* アイコンとテキストの上を揃える */
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .hobby-item i {
             color: var(--accent-color);
             font-size: 1.5rem;
+            margin-top: 5px; /* アイコンの位置を微調整 */
+        }
+        
+        .hobby-item div {
+            flex: 1;
         }
 
         /* Area Section */
@@ -131,9 +138,9 @@
         }
 
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2rem; }
-            .hero-content p { font-size: 1.1rem; }
-            .hero { height: 400px; } /* スマホでは少し高さを抑える */
+            .hero-content h1 { font-size: 1.8rem; }
+            .hero-content p { font-size: 1rem; }
+            .container { padding: 50px 20px; }
         }
     </style>
 </head>
@@ -149,15 +156,14 @@
     <div class="container">
         <section id="about">
             <h2>About "Kanapoo"</h2>
-            <div class="profile-body">
+            <div class="profile-simple-text">
                 <h3>ライフデザイナー 2年目の情熱</h3>
                 <p>
                     西毛エリアを中心に活動する、住友生命2年目のライフデザイナー「かなプー」です。<br>
                     私自身、高校生の息子を育てる一人の母として、日々奮闘しています。子どもたちが自分の夢に向かって真っ直ぐに進める未来。それを「お金と安心」の面からサポートするのが私の使命です。
                 </p>
                 <p>
-                    知的なプロフェッショナルとしての顔と、等身大の母としての顔。
-                    この二つがあるからこそ、あなたの家庭のリアルな悩みに寄り添えると信じています。
+                    トップの写真では少し澄ましていますが、中身はどこにでもいる母ちゃんです。知的なプロとしての顔と、等身大の母としての顔。この二つがあるからこそ、あなたの家庭のリアルな悩みに寄り添えると信じています。
                 </p>
             </div>
         </section>
@@ -166,15 +172,21 @@
             <h2>至福のペアリング</h2>
             <div class="hobby-item">
                 <i class="fas fa-shrimp"></i>
-                <p><strong>海鮮三昧：</strong> イカ・カニ・エビがあれば幸せ！素材の味を大切にするのが私のスタイル。</p>
+                <div>
+                    <strong>海鮮三昧：</strong> イカ・カニ・エビがあれば幸せ！素材の味を大切にするのが私のスタイル。
+                </div>
             </div>
             <div class="hobby-item">
                 <i class="fas fa-glass-white-wine"></i>
-                <p><strong>白ワイン：</strong> キリッと冷えた一杯のように、スッキリと透明感のあるご提案を心がけています。</p>
+                <div>
+                    <strong>白ワイン：</strong> キリッと冷えた一杯のように、スッキリと透明感のあるご提案を心がけています。
+                </div>
             </div>
             <div class="hobby-item">
                 <i class="fas fa-fire"></i>
-                <p><strong>藤岡の活力：</strong> 焼肉なら「万福苑」！美味しいお肉と白ワインのペアリングが私のパワーの源です。</p>
+                <div>
+                    <strong>藤岡の活力：</strong> 焼肉なら「万福苑」！美味しいお肉と白ワインのペアリングが私のパワーの源です。
+                </div>
             </div>
         </section>
     </div>
