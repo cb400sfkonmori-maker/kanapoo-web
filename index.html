@@ -22,11 +22,11 @@
             padding: 0;
         }
 
-        /* Hero Section - 高さを程よく調整 */
+        /* Hero Section - 新しい背景画像に変更 */
         .hero {
-            height: 50vh; /* 画面の高さの半分にする */
-            min-height: 400px; /* ただし最低400pxは確保 */
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image1.jpg') no-repeat center center/cover;
+            height: 60vh; /* 高さを画面の60%に設定 */
+            min-height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('hero-bg.jpg') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -36,20 +36,20 @@
         }
 
         .hero-content h1 {
-            font-size: 2.5rem; /* 少しサイズを調整 */
+            font-size: 3rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
         }
 
         /* Container */
         .container {
-            max-width: 800px; /* 全体の幅を少しすっきりと */
+            max-width: 1000px; /* 幅を少し広げる */
             margin: 0 auto;
             padding: 80px 20px;
         }
@@ -71,11 +71,28 @@
             margin: 20px auto 0;
         }
 
-        /* Profile Section - シンプルな中央揃えテキストに変更 */
-        .profile-simple-text {
-            text-align: left;
-            max-width: 680px;
-            margin: 0 auto; /* 中央寄せ */
+        /* Profile Section - 横並びレイアウト（flex）に戻す */
+        .profile-flex {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap; /* スマホでは縦並びになるように */
+        }
+
+        .profile-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .profile-text {
+            flex: 1.5;
+            min-width: 300px;
         }
 
         /* Hobbies Section */
@@ -88,7 +105,7 @@
 
         .hobby-item {
             display: flex;
-            align-items: flex-start; /* アイコンとテキストの上を揃える */
+            align-items: flex-start;
             gap: 15px;
             margin-bottom: 25px;
         }
@@ -96,7 +113,7 @@
         .hobby-item i {
             color: var(--accent-color);
             font-size: 1.5rem;
-            margin-top: 5px; /* アイコンの位置を微調整 */
+            margin-top: 5px;
         }
         
         .hobby-item div {
@@ -138,9 +155,11 @@
         }
 
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 1.8rem; }
-            .hero-content p { font-size: 1rem; }
-            .container { padding: 50px 20px; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1.1rem; }
+            .hero { height: 400px; }
+            .profile-flex { flex-direction: column; } /* スマホでは縦並び */
+            .profile-image, .profile-text { min-width: 100%; }
         }
     </style>
 </head>
@@ -156,15 +175,20 @@
     <div class="container">
         <section id="about">
             <h2>About "Kanapoo"</h2>
-            <div class="profile-simple-text">
-                <h3>ライフデザイナー 2年目の情熱</h3>
-                <p>
-                    西毛エリアを中心に活動する、住友生命2年目のライフデザイナー「かなプー」です。<br>
-                    私自身、高校生の息子を育てる一人の母として、日々奮闘しています。子どもたちが自分の夢に向かって真っ直ぐに進める未来。それを「お金と安心」の面からサポートするのが私の使命です。
-                </p>
-                <p>
-                    トップの写真では少し澄ましていますが、中身はどこにでもいる母ちゃんです。知的なプロとしての顔と、等身大の母としての顔。この二つがあるからこそ、あなたの家庭のリアルな悩みに寄り添えると信じています。
-                </p>
+            <div class="profile-flex">
+                <div class="profile-image">
+                    <img src="image1.jpg" alt="知的なプロフェッショナル かなプー">
+                </div>
+                <div class="profile-text">
+                    <h3>ライフデザイナー 2年目の情熱</h3>
+                    <p>
+                        西毛エリアを中心に活動する、住友生命2年目のライフデザイナー「かなプー」です。<br>
+                        私自身、高校生の息子を育てる一人の母として、日々奮闘しています。子どもたちが自分の夢に向かって真っ直ぐに進める未来。それを「お金と安心」の面からサポートするのが私の使命です。
+                    </p>
+                    <p>
+                        写真（左）では少し澄ましていますが、中身はどこにでもいる母ちゃんです。知的なプロとしての顔と、等身大の母としての顔。この二つがあるからこそ、あなたの家庭のリアルな悩みに寄り添えると信じています。
+                    </p>
+                </div>
             </div>
         </section>
 
