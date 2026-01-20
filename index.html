@@ -161,6 +161,61 @@
             .profile-flex { flex-direction: column; } /* スマホでは縦並び */
             .profile-image, .profile-text { min-width: 100%; }
         }
+        /* ボタンエリアのレイアウト */
+.contact-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* 共通ボタン設定（既存の.btnを微調整） */
+.btn {
+    min-width: 160px;
+    padding: 15px 25px;
+    text-align: center;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-tel {
+    background-color: #27ae60 !important;
+    color: white !important;
+}
+
+.btn-line {
+    background-color: #06C755 !important;
+    color: white !important;
+}
+
+.btn-mail {
+    background-color: var(--accent-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* スマホ対応：縦に並べて押しやすくする */
+@media (max-width: 768px) {
+    .contact-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
     </style>
 </head>
 <body>
@@ -215,17 +270,31 @@
         </section>
     </div>
 
-    <section class="area">
-        <div class="container" style="padding: 0;">
-            <h2>Supported Area</h2>
-            <p>高崎市 ・ 前橋市 ・ 藤岡市（西毛エリア全域）</p>
-            <p>地元のスペシャリストと連携し、<br>あなたの街の未来を共に描きます。</p>
-            <a href="#" class="btn">かなプーに相談してみる</a>
+<section class="area">
+    <div class="container" style="padding: 0;">
+        <h2>Let's Talk!</h2>
+        <p>高崎市 ・ 前橋市 ・ 藤岡市（西毛エリア全域）</p>
+        <p>未来への地図を、一緒に描いてみませんか？<br>
+        どんな小さなことでも、かなプーにお気軽にご相談ください。</p>
+        
+        <div class="contact-btns">
+            <a href="tel:00000000000" class="btn btn-tel">
+                <i class="fas fa-phone"></i> お電話
+            </a>
+            
+            <a href="https://line.me/ti/p/ここにURL" target="_blank" class="btn btn-line">
+                <i class="fab fa-line"></i> LINE相談
+            </a>
+
+            <a href="mailto:example@example.com" class="btn btn-mail">
+                <i class="fas fa-envelope"></i> メール
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
     <footer>
-        <p>&copy; 2026 Kanapoo Life Design. Produced by Logic Base.</p>
+        <p>&copy; 2026 Kanapoo Life Design. Produced by Friends.</p>
     </footer>
 <div class="ai-kanapoo-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
     <a href="AIチャットのURL" target="_blank" style="text-decoration: none;">
