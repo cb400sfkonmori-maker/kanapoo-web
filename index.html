@@ -217,6 +217,13 @@
     }
 }
     </style>
+    <script type="importmap">
+  {
+    "imports": {
+      "@google/generative-ai": "https://esm.run/@google/generative-ai"
+    }
+  }
+</script>
 </head>
 <body>
 
@@ -296,13 +303,82 @@
     <footer>
         <p>&copy; 2026 Kanapoo Life Design. Produced by Friends.</p>
     </footer>
-<div class="ai-kanapoo-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <a href="AIチャットのURL" target="_blank" style="text-decoration: none;">
-        <div style="background: white; border-radius: 50px; padding: 10px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 10px;">
-            <img src="image1.jpg" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-            <span style="color: #003366; font-weight: bold;">AIかなプーに相談する</span>
+<div id="chat-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; font-family: sans-serif;">
+    <button id="chat-open-btn" style="background: white; border: none; border-radius: 50px; padding: 10px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; gap: 10px;">
+        <img src="image1.jpg" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+        <span style="color: #003366; font-weight: bold;">AIかなプーに相談する</span>
+    </button>
+
+    <div id="chat-box" style="display: none; width: 350px; height: 500px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden;">
+        <div style="background: #003366; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between;">
+            <span>AIかなプー相談室</span>
+            <span id="chat-close-btn" style="cursor: pointer;">&times;</span>
         </div>
-    </a>
+        <div id="chat-messages" style="flex: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background: #fdfdfd;">
+            <div style="margin-bottom: 10px; color: #555;"><strong>かなプー:</strong> こんにちは！西毛エリアを走り回るかなプーの分身です。何かお手伝いしましょうか？</div>
+        </div>
+        <div style="padding: 10px; border-top: 1px solid #eee; display: flex; gap: 5px;">
+            <input type="text" id="chat-input" placeholder="メッセージを入力..." style="flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 8px 15px; outline: none;">
+            <button id="chat-send-btn" style="background: #f1c40f; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer;"><i class="fas fa-paper-plane" style="color: #003366;"></i></button>
+        </div>
+    </div>
 </div>
+    <script type="module">
+  import { GoogleGenerativeAI } from "@google/generative-ai";
+
+  // 【重要】ここに隼也さんのGemini APIキーを入れてください
+  const API_KEY = "YOUR_GEMINI_API_KEY";
+  const genAI = new GoogleGenerativeAI(API_KEY);
+
+  // AIかなプーの性格設定（システムプロンプト）
+  const systemInstruction = `
+    あなたはライフデザイナー「かなプー」のデジタル分身です。
+    知的なプロ と等身大の母 の2つの顔を持ち、西毛エリアの未来を照らします。
+    海鮮（イカ・カニ・エビ）と白ワイン、万福苑の焼肉が大好きです。
+    相談者の不安に共感し、白ワインのようにスッキリと解決策を提案してください。
+    ※相談が終わる際は、公式LINEへの誘導を行ってください。
+  `;
+
+  const model = genAI.getGenerativeModel({ 
+    model: "gemini-1.5-flash",
+    systemInstruction: systemInstruction 
+  });
+
+  const chatOpenBtn = document.getElementById('chat-open-btn');
+  const chatCloseBtn = document.getElementById('chat-close-btn');
+  const chatBox = document.getElementById('chat-box');
+  const chatInput = document.getElementById('chat-input');
+  const chatSendBtn = document.getElementById('chat-send-btn');
+  const chatMessages = document.getElementById('chat-messages');
+
+  // UI操作
+  chatOpenBtn.onclick = () => { chatBox.style.display = 'flex'; chatOpenBtn.style.display = 'none'; };
+  chatCloseBtn.onclick = () => { chatBox.style.display = 'none'; chatOpenBtn.style.display = 'flex'; };
+
+  async function sendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    // ユーザーのメッセージを表示
+    chatMessages.innerHTML += `<div style="margin-bottom: 10px; text-align: right;"><strong>あなた:</strong> ${text}</div>`;
+    chatInput.value = '';
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    try {
+      const result = await model.generateContent(text);
+      const response = await result.response;
+      const aiText = response.text();
+
+      // AIかなプーの返信を表示
+      chatMessages.innerHTML += `<div style="margin-bottom: 10px; color: #003366;"><strong>かなプー:</strong> ${aiText}</div>`;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    } catch (error) {
+      chatMessages.innerHTML += `<div style="color: red; font-size: 0.8rem;">エラーが発生しました。</div>`;
+    }
+  }
+
+  chatSendBtn.onclick = sendMessage;
+  chatInput.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
+</script>
 </body>
 </html>
