@@ -216,6 +216,37 @@
         max-width: 300px;
     }
 }
+        .family {
+    margin-top: 80px;
+}
+
+.family-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-direction: row-reverse; /* 写真を右、テキストを左に配置してリズムを作ります */
+}
+
+.family-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.family-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.family-text {
+    flex: 1.5;
+}
+
+@media (max-width: 768px) {
+    .family-flex {
+        flex-direction: column; /* スマホでは縦並びに */
+    }
+}
     </style>
     <script type="importmap">
   {
@@ -275,6 +306,23 @@
                 </div>
             </div>
         </section>
+        <section class="family">
+    <h2>My Precious Partner</h2>
+    <div class="family-flex">
+        <div class="family-image">
+            <img src="dog-partner.jpg" alt="かなプーの愛犬">
+        </div>
+        <div class="family-text">
+            <h3>癒やしと元気をくれる相棒</h3>
+            <p>
+                仕事から帰ると、いつも全力の笑顔で迎えてくれる愛犬。私にとって、明日への活力をくれる大切な家族です。
+            </p>
+            <p>
+                「家族の安心」を考える仕事をしているからこそ、私自身も家族との時間を何より大切にしています。あなたの「大切な存在」を守るお手伝い、ぜひ私にさせてくださいね。
+            </p>
+        </div>
+    </div>
+</section>
     </div>
 
 <section class="area">
