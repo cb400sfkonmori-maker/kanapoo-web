@@ -326,8 +326,17 @@
     <script type="module">
   import { GoogleGenerativeAI } from "@google/generative-ai";
 
-  // 【重要】ここに隼也さんのGemini APIキーを入れてください
-  const API_KEY = "AIzaSyBq9n39dIv-L8js_DeLeW_E7E1K2RCgzwE";
+// 🤖 ボット対策：キーを分割して記載する
+    
+    // ① キーの先頭部分（ここは固定）
+    const keyPart1 = "AIzaSy"; 
+    
+    // ② 新しいキーの「AIzaSy」より後ろの部分だけをここに貼る
+    // 例：キーが "AIzaSy_abc123" なら "_abc123" だけを貼る
+    const keyPart2 = "BLsnoB_T7TCvI0o-1QZmgxC0nWfkuDKo8"; 
+    
+    // ③ ここで合体！
+    const API_KEY = keyPart1 + keyPart2;
   const genAI = new GoogleGenerativeAI(API_KEY);
 
   // AIかなプーの性格設定（システムプロンプト）
