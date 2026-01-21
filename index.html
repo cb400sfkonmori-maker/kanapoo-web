@@ -418,9 +418,14 @@
   const chatMessages = document.getElementById('chat-messages');
 
   // UI操作
-  chatOpenBtn.onclick = () => { chatBox.style.display = 'flex'; chatOpenBtn.style.display = 'none'; };
-  chatCloseBtn.onclick = () => { chatBox.style.display = 'none'; chatOpenBtn.style.display = 'flex'; };
+  // UI操作
+chatOpenBtn.onclick = () => { 
+    chatBox.style.display = 'flex'; 
+    chatOpenBtn.style.display = 'none'; 
 
+    // ここにイベント計測コードを追加
+    gtag('event', 'chat_opened', { 'event_category': 'engagement', 'event_label': 'AI Kanapoo Chat' });
+};
   async function sendMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
